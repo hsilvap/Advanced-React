@@ -10,7 +10,7 @@ const Mutations = {
         return item;
     },
     //createDog(parent, args, ctx, info){
-        //create a dog!
+    //create a dog!
     //    console.log(args)
     //}
     updateItem(parent, args, ctx, info) {
@@ -28,6 +28,15 @@ const Mutations = {
         }, info
         );
     },
+    async deleteItem(parent, args, ctx, info) {
+        const where = { id: args.id };
+        //find the item
+        //check permissions
+        //delete
+        const item = await ctx.db.query.item({ where } , `{id title}`);
+
+        return ctx.db.mutation.deleteItem({ where }, info)
+    }
 };
 
 module.exports = Mutations;
